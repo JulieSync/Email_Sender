@@ -11,11 +11,10 @@ const app = express();
 // ==================== SECURITY MIDDLEWARES ====================
 app.use(helmet());
 
-// === GLOBAL RATE LIMIT (15 req/menit untuk seluruh web) ===
 const globalLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 menit
+  windowMs: 60 * 1000,
   max: 5,
-  keyGenerator: () => 'global', // Semua request dihitung sebagai satu entitas
+  keyGenerator: () => 'global',
   message: 'Terlalu banyak permintaan di seluruh web, coba lagi dalam 1 menit.'
 });
 app.use(globalLimiter);
